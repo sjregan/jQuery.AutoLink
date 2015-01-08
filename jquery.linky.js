@@ -87,7 +87,7 @@
             // 'a' elements with an 'href' or are not YouTube URLS
         	var isYouTubeEmbed      = value.match( /youtube\.com\/embed/ig );
         	var isYouTubeAltEmbed   = value.match( /youtube\-nocookie\.com\/embed/ig );
-        	isYouTubeEmbed          = ( isYouTubeEmbed !== null && isYouTubeAltEmbed !== null ) ? true : false;        	
+        	isYouTubeEmbed          = ( isYouTubeEmbed !== null || isYouTubeAltEmbed !== null ) ? true : false;        	
         	
             if ( !isYouTubeEmbed && $el.find("a[href='" + this + "']").length === 0) {
                 elContent = elContent.replace(this, '<a class="linkified" href="' + this + '" target="'+ linkObj.target +'">' + this + '</a>');

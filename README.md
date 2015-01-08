@@ -6,9 +6,9 @@ Linky is a jQuery plugin for linkifying URLs, mentions (for Twitter, Instagram o
 ## Changes
 
 This fork <a href="https://github.com/MarQuisKnox/jquery.linky">@MarQuisKnox</a> has the following changes:
-# Adds the option to link locally
-# Adds the option to specify the href target
-# Fixes YouTube Embeds
+1. Adds the option to link locally
+2. Adds the option to specify the href target
+3. Fixes YouTube Embeds
 
 ## Usage
 

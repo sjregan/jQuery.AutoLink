@@ -1,9 +1,10 @@
 /**
- * jquery.linky.js v0.1.6
+ * jquery.linky.js v0.1.8
  * https://github.com/AnSavvides/jquery.linky
  * The MIT License (MIT)
  *
- * Copyright (c) 2013 Andreas Savvides
+ * Copyright (c) 2013 - 2015 Andreas Savvides et al
+ * Copyright (c) 2014 - 2015 MarQuis Knox
  */
 (function($) {
 
@@ -27,7 +28,7 @@
                 },        		
                 twitter: {
                     baseUrl: "https://twitter.com/",
-                    hashtagSearchUrl: "search?q=",
+                    hashtagSearchUrl: "hashtag/",
                     target: '_blank'
                 },
                 instagram: {
@@ -105,7 +106,7 @@
     function _linkifyHashtags(text, links) {
         // If there is no search URL for a hashtag, there isn't much we can do
         if (links.hashtagSearchUrl === null) return text;
-        return text.replace(/(^|\s|\(|>)#(\w+)/g, "$1<a class='linkified' href='" + links.baseUrl + links.hashtagSearchUrl + "$2' target='_blank'>#$2</a>");
+        return text.replace(/(^|\s|\(|>)#((\w|[\u00A1-\uFFFF])+)/g, "$1<a class='linkified' href='" + links.baseUrl + links.hashtagSearchUrl + "$2' target='_blank'>#$2</a>");
     }
 
 }(jQuery));

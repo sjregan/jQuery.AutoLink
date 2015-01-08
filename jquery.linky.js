@@ -1,6 +1,7 @@
 /**
  * jquery.linky.js v0.1.8
  * https://github.com/AnSavvides/jquery.linky
+ * https://github.com/MarQuisKnox/jquery.linky
  * The MIT License (MIT)
  *
  * Copyright (c) 2013 - 2015 Andreas Savvides et al

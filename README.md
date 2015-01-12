@@ -31,7 +31,7 @@ Linky is also available as a Bower package; you can simply install it by doing `
 
 ### Example
 
-Linky would come in handy if you are pulling data from any of Twitter's or Instagram's APIs where you will end up having just a plain text string like below:
+Linky++ would come in handy if you are pulling data from any of Twitter's or Instagram's APIs where you will end up having just a plain text string like below:
 
 `@andreassavvides works on his #opensource projects over at https://github.com/AnSavvides`
 
@@ -71,7 +71,8 @@ All contributions are welcome; just fork the repository, make your changes and o
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2013 Andreas Savvides
+Copyright (c) 2013 - 2015 Andreas Savvides
+Copyright (c) 2014 - 2015 MarQuis Knox
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

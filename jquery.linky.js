@@ -1,9 +1,9 @@
 /**
- * Linky++ v0.2.1
+ * Linky++ v0.2.2
  * 
  * @link		https://github.com/AnSavvides/jquery.linky
  * @link		https://github.com/MarQuisKnox/jquery.linky
- * @license		MIT
+ * @license		MIT <http://en.wikipedia.org/wiki/MIT_License>
  *
  * @copyright	2013 - 2015 Andreas Savvides et al
  * @copyright	2014 - 2015 MarQuis Knox
@@ -91,6 +91,7 @@
     }
     
     function _isEmbed( url ) {
+    	
     	// check for Dailymotion embed
     	var isDailymotionEmbed	= url.match( /dailymotion\.com\/embed/ig );
     	isDailymotionEmbed		= ( isDailymotionEmbed !== null ) ? true : false;
@@ -98,6 +99,14 @@
     	if( isDailymotionEmbed ) {
     		return true;
     	}
+    	
+    	// check for SoundCloud embed
+    	var isSoundCloudEmbed	= url.match( /w\.soundcloud\.com\/player/ig );
+    	isSoundCloudEmbed		= ( isSoundCloudEmbed !== null ) ? true : false;
+    	
+    	if( isSoundCloudEmbed ) {
+    		return true;
+    	}    	
     	    	
     	// check for Vimeo embed
     	var isVimeoEmbed	= url.match( /player\.vimeo\.com\/video/ig );
@@ -117,6 +126,7 @@
     	}
     	
     	return false;
+    	
     }    
 
     function _linkifyUrls( matches, $el, linkObj ) {

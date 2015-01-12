@@ -5,7 +5,7 @@ Linky++ is a jQuery plugin for linkifying URLs, mentions (for Twitter, Instagram
 
 ## Changes
 
-This fork <a href="https://github.com/MarQuisKnox/jquery.linky">@MarQuisKnox</a> has the following changes:
+This fork (<a href="https://github.com/MarQuisKnox/jQuery.linkyPlusPlus">@MarQuisKnox</a>) has the following changes:
 <br><br>
 1. Adds the option to link locally<br>
 2. Adds the option to specify the href target<br>

@@ -1,7 +1,7 @@
 Linky++
 =====
 
-Linky++ is a jQuery plugin for linkifying URLs, mentions (for Twitter, Instagram or GitHub) and hashtags (for Twitter); that is, taking plain text references of URLs, mentions and hashtags and turning them to the appropriate links. Existing linkified URLs are kept untouched.
+Linky++ is a jQuery plugin for linkifying URLs, mentions (for Twitter, Instagram, GitHub, or a locally hosted site) and hashtags (for Twitter or a locally hosted site). It transforms plain text URLs, mentions and hashtags into clickable URLs.
 
 ## Changes
 

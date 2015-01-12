@@ -1,5 +1,5 @@
 /**
- * jquery.linky.js v0.1.9
+ * jquery.linky.js v0.2.0
  * https://github.com/AnSavvides/jquery.linky
  * https://github.com/MarQuisKnox/jquery.linky
  * The MIT License (MIT)
@@ -58,10 +58,10 @@
             matches;
 
             // Linkifying URLs
-            if (extendedOptions.urls) {
-                matches = elContent.match(urlRegEx);
+            if ( extendedOptions.urls ) {
+                matches = elContent.match( urlRegEx );
                 if ( matches ) {
-                    elContent = _linkifyUrls(matches, $el, links);
+                    elContent = _linkifyUrls( matches, $el, extendedOptions );
                 }
             }
 
@@ -77,29 +77,45 @@
 
         return elContent;
     }
+    
+    function _isEmbed( url ) {
+    	// check for Dailymotion embed
+    	var isDailymotionEmbed	= url.match( /dailymotion\.com\/embed/ig );
+    	isDailymotionEmbed		= ( isDailymotionEmbed !== null ) ? true : false;
+    	
+    	if( isDailymotionEmbed ) {
+    		return true;
+    	}
+    	    	
+    	// check for Vimeo embed
+    	var isVimeoEmbed	= url.match( /player\.vimeo\.com\/video/ig );
+    	isVimeoEmbed		= ( isVimeoEmbed !== null ) ? true : false;
+    	
+    	if( isVimeoEmbed ) {
+    		return true;
+    	}    	
+    	
+    	// check for YouTube embed
+    	var isYouTubeEmbed      = url.match( /youtube\.com\/embed/ig );
+    	var isYouTubeAltEmbed   = url.match( /youtube\-nocookie\.com\/embed/ig );
+    	isYouTubeEmbed          = ( isYouTubeEmbed !== null || isYouTubeAltEmbed !== null ) ? true : false;
+    	
+    	if( isYouTubeEmbed ) {
+    		return true;
+    	}
+    	
+    	return false;
+    }    
 
     // For any URLs present, unless they are already identified within
     // an 'a' element, linkify them.
     function _linkifyUrls(matches, $el, linkObj) {
-        var elContent = $el.html();
-
-        $.each(matches, function( index, value ) {
+        
+    	var elContent = $el.html();
+        $.each( matches, function( index, value ) {
             // Only linkify URLs that are not already identified as
             // 'a' elements with an 'href' or are not YouTube URLS
-        	var isEmbed				= false;
-        	
-        	// check for YouTube embed
-        	var isYouTubeEmbed      = value.match( /youtube\.com\/embed/ig );
-        	var isYouTubeAltEmbed   = value.match( /youtube\-nocookie\.com\/embed/ig );
-        	isYouTubeEmbed          = ( isYouTubeEmbed !== null || isYouTubeAltEmbed !== null ) ? true : false;        	
-        	
-        	// check for Vimeo embed
-        	var isVimeoEmbed	= value.match( /player\.vimeo\.com\/video/ig );
-        	isVimeoEmbed		= ( isVimeoEmbed !== null ) ? true : false;
-        	
-        	if( isYouTubeEmbed || isVimeoEmbed ) {
-        		isEmbed = true;
-        	}
+        	var isEmbed = _isEmbed( value );
         	       
             if ( !isEmbed && $el.find('a[href="' + this + '"]').length === 0 ) {
                 elContent = elContent.replace(this, '<a class="linkified" href="' + this + '" target="'+ linkObj.target +'">' + this + '</a>');

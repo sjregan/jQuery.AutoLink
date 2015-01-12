@@ -1,26 +1,28 @@
 /**
- * jquery.linky.js v0.2.0
- * https://github.com/AnSavvides/jquery.linky
- * https://github.com/MarQuisKnox/jquery.linky
- * The MIT License (MIT)
+ * Linky++ v0.2.1
+ * 
+ * @link		https://github.com/AnSavvides/jquery.linky
+ * @link		https://github.com/MarQuisKnox/jquery.linky
+ * @license		MIT
  *
- * Copyright (c) 2013 - 2015 Andreas Savvides et al
- * Copyright (c) 2014 - 2015 MarQuis Knox
- */
+ * @copyright	2013 - 2015 Andreas Savvides et al
+ * @copyright	2014 - 2015 MarQuis Knox
+*/
+
 (function($) {
 
-    "use strict";
+    'use strict';
 
     $.fn.linky = function(options) {
-        return this.each(function() {
-            var $el = $(this),
-                linkifiedContent = _linkify($el, options);
+        return this.each( function() {
+            var $el					= $(this);
+            var linkifiedContent	= _linkify( $el, options );
 
-            $el.html(linkifiedContent);
+            $el.html( linkifiedContent );
         });
     };
 
-    function _linkify($el, options) {
+    function _linkify( $el, options ) {
         var links = {
                 local: {
                     baseUrl: BASEURL + "/",
@@ -48,7 +50,8 @@
                 hashtags: false,
                 urls: true,
                 linkTo: 'local',
-                target: '_blank'
+                target: '_blank',
+                scheme: 'http://'
             },
             extendedOptions = $.extend(defaultOptions, options),
             elContent = $el.html(),
@@ -76,6 +79,15 @@
             }
 
         return elContent;
+    }
+    
+    function _hasScheme( url ) {
+    	var regEx = /ed2k|ftp|http|https|news|nntp/;
+    	if( url.match( regEx ) ) {
+    		return true;
+    	}
+    	
+    	return false;
     }
     
     function _isEmbed( url ) {
@@ -107,19 +119,22 @@
     	return false;
     }    
 
-    // For any URLs present, unless they are already identified within
-    // an 'a' element, linkify them.
-    function _linkifyUrls(matches, $el, linkObj) {
+    function _linkifyUrls( matches, $el, linkObj ) {
         
     	var elContent = $el.html();
         $.each( matches, function( index, value ) {
-            // Only linkify URLs that are not already identified as
-            // 'a' elements with an 'href' or are not YouTube URLS
+        	
+        	// check if embed
         	var isEmbed = _isEmbed( value );
+        	
+        	// check for scheme
+        	var scheme = ( _hasScheme( value ) ) ? '' : linkObj.scheme;        	
+        	
         	       
-            if ( !isEmbed && $el.find('a[href="' + this + '"]').length === 0 ) {
-                elContent = elContent.replace(this, '<a class="linkified" href="' + this + '" target="'+ linkObj.target +'">' + this + '</a>');
+            if ( !isEmbed && $el.find('a[href="' + scheme + this + '"]').length === 0 ) {
+                elContent = elContent.replace( this, '<a class="linkified" href="' + scheme + this + '" target="'+ linkObj.target +'">' + this + '</a>' );
             }
+            
         });
 
         return elContent;

@@ -1,5 +1,5 @@
 /**
- * Linky++ v0.2.2
+ * Linky++ v0.2.3
  * 
  * @link		https://github.com/AnSavvides/jquery.linky
  * @link		https://github.com/MarQuisKnox/jquery.linky
@@ -27,22 +27,26 @@
                 local: {
                     baseUrl: BASEURL + "/",
                     hashtagSearchUrl: "search/",
-                    target: '_self'
+                    target: '_self',
+                    scheme: '//'
                 },        		
                 twitter: {
                     baseUrl: "https://twitter.com/",
                     hashtagSearchUrl: "search?q=",
-                    target: '_blank'
+                    target: '_blank',
+                    scheme: 'https://'
                 },
                 instagram: {
                     baseUrl: "http://instagram.com/",
                     hashtagSearchUrl: null,
-                    target: '_blank'
+                    target: '_blank',
+                    scheme: 'http://'
                 },
                 github: {
                     baseUrl: "https://github.com/",
                     hashtagSearchUrl: null,
-                    target: '_blank'
+                    target: '_blank',
+                    scheme: 'https://'
                 }
             },
             defaultOptions = {
@@ -50,8 +54,8 @@
                 hashtags: false,
                 urls: true,
                 linkTo: 'local',
-                target: '_blank',
-                scheme: 'http://'
+                target: '_self',
+                scheme: '//'
             },
             extendedOptions = $.extend(defaultOptions, options),
             elContent = $el.html(),
@@ -68,14 +72,16 @@
                 }
             }
 
-            // Linkifying mentions
-            if (extendedOptions.mentions) {
-                elContent = _linkifyMentions(elContent, links[extendedOptions.linkTo].baseUrl);
+            // Linkify Mentions
+            if ( extendedOptions.mentions ) {
+            	if( _isMention( elContent ) ) {
+                    elContent = _linkifyMentions( elContent, links[extendedOptions.linkTo].baseUrl, $el, extendedOptions );            		
+            	}
             }
 
-            // Linkifying hashtags
-            if (extendedOptions.hashtags) {
-                elContent = _linkifyHashtags(elContent, links[extendedOptions.linkTo]);
+            // Linkify Hashtags
+            if ( extendedOptions.hashtags ) {
+                elContent = _linkifyHashtags( elContent, links[extendedOptions.linkTo], $el );
             }
 
         return elContent;
@@ -129,8 +135,8 @@
     	
     }    
 
-    function _linkifyUrls( matches, $el, linkObj ) {
-        
+    function _linkifyUrls( matches, $el, linkObj ) 
+    {       
     	var elContent = $el.html();
         $.each( matches, function( index, value ) {
         	
@@ -139,8 +145,7 @@
         	
         	// check for scheme
         	var scheme = ( _hasScheme( value ) ) ? '' : linkObj.scheme;        	
-        	
-        	       
+        	        	       
             if ( !isEmbed && $el.find('a[href="' + scheme + this + '"]').length === 0 ) {
                 elContent = elContent.replace( this, '<a class="linkified" href="' + scheme + this + '" target="'+ linkObj.target +'">' + this + '</a>' );
             }
@@ -149,19 +154,68 @@
 
         return elContent;
     }
+    
+    function _isMention( string )
+    {
+    	var regEx		= /@(\w+)/ig;
+    	var isMention	= string.match( regEx );
+    	
+    	if( isMention ) {
+    		return true;
+    	}
+    	
+    	return false;
+    }
+    
+    function _getMentions( string )
+    {
+    	var regEx		= /@(\w+)/ig;
+    	var mentions	= string.match( regEx );
+    	
+    	if( mentions ) {
+    		return mentions;
+    	}
+    	
+    	return null;
+    }    
 
     // Find any mentions (e.g. @andreassavvides) and turn them into links that
     // refer to the appropriate social profile (e.g. twitter or instagram).
-    function _linkifyMentions(text, baseUrl) {
-        return text.replace(/(^|\s|\(|>)@(\w+)/g, "$1<a class='linkified' href='" + baseUrl + "$2' target='_blank'>@$2</a>");
+    function _linkifyMentions( text, baseUrl, element, options ) {
+		if( !element.hasClass('parsed') && !element.hasClass('autoLinked') ) {
+			// get mentions
+	    	var mentions = _getMentions( text );
+
+	    	// if mentions
+	    	if( mentions ) {	
+	    		$.each( mentions, function( index, value ) {
+	    			// replace @ sign
+	    			var link = value.replace('@', ''); 
+	    			
+	    			// replacement text
+	    			var replacement = '<a class="linkified" href="' + baseUrl + link + '" target="'+ options.target +'">'+ value +'</a>';
+	    			
+	    			// new content
+	    			var newContent = str_replace( value, replacement, element.html() );
+	    			
+	    			// replace in the element
+	    			element.html( newContent );
+	    		});	    		
+	    	}
+		}
     }
 
     // Find any hashtags (e.g. #linkyrocks) and turn them into links that refer
     // to the appropriate social profile.
-    function _linkifyHashtags(text, links) {
+    function _linkifyHashtags( text, links, element ) {
         // If there is no search URL for a hashtag, there isn't much we can do
-        if (links.hashtagSearchUrl === null) return text;
-        return text.replace(/(^|\s|\(|>)#((\w|[\u00A1-\uFFFF])+)/g, "$1<a class='linkified' href='" + links.baseUrl + links.hashtagSearchUrl + "$2' target='_blank'>#$2</a>");
+        if ( links.hashtagSearchUrl === null ) {
+        	return text;
+        }
+        
+        if ( element.find('a[href="' + this + '"]').length === 0 ) {        
+        	return text.replace(/(^|\s|\(|>)#((\w|[\u00A1-\uFFFF])+)/g, "$1<a class='linkified' href='" + links.baseUrl + links.hashtagSearchUrl + "$2' target='"+ links.target +"'>#$2</a>");
+        }
     }
 
 }(jQuery));

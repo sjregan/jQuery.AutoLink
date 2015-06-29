@@ -5,7 +5,7 @@ jQuery AutoLink is a jQuery plugin for linkifying URLs, mentions (for Twitter, I
 
 ## Changes
 
-This fork (<a href="https://github.com/MarQuisKnox/jQuery.linkyPlusPlus">@MarQuisKnox</a>) has the following changes:
+This fork (<a href="https://github.com/MarQuisKnox/jQuery.AutoLink">@MarQuisKnox</a>) has the following changes:
 <br><br>
 1. Adds the option to link locally<br>
 2. Adds the option to specify the href target<br>
@@ -16,10 +16,7 @@ This fork (<a href="https://github.com/MarQuisKnox/jQuery.linkyPlusPlus">@MarQui
 
 The only dependency is [jQuery](http://jquery.com/).
 
-All you have to do is include [`jquery.linky.js`](jquery.linky.js) or [`jquery.linky.min.js`](jquery.linky.min.js) just after you've included `jQuery` and you are all set.
-
-### Install using Bower
-Linky is also available as a Bower package; you can simply install it by doing `bower install jquery.linky`.
+All you have to do is include [`jquery.autolink.js`](jquery.linky.js) or [`jquery.autolink.min.js`](jquery.autolink.min.js) just after you've included `jQuery` and you're all set.
 
 ### Options
 | Option        | Default     | Type         | Description |
@@ -31,7 +28,7 @@ Linky is also available as a Bower package; you can simply install it by doing `
 
 ### Example
 
-Linky++ would come in handy if you are pulling data from any of Twitter's or Instagram's APIs where you will end up having just a plain text string like below:
+jQuery AutoLink would come in handy if you are pulling data from any of Twitter's or Instagram's APIs where you will end up having just a plain text string like below:
 
 `@andreassavvides works on his #opensource projects over at https://github.com/AnSavvides`
 

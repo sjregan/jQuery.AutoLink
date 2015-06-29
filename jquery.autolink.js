@@ -1,7 +1,6 @@
 /**
- * jQuery AutoLink v0.2.3
+ * jQuery AutoLink
  * 
- * @link		https://github.com/AnSavvides/jquery.linky
  * @link		https://github.com/MarQuisKnox/jquery.AutoLink
  * @license		MIT <http://en.wikipedia.org/wiki/MIT_License>
  *
@@ -107,7 +106,7 @@
     	}
     	
     	// check for SoundCloud embed
-    	var isSoundCloudEmbed	= url.match( /w\.soundcloud\.com\/player/ig );
+    	var isSoundCloudEmbed	= url.match( /w\.soundcloud\.com\/player|api\.soundcloud\.com/ig );
     	isSoundCloudEmbed		= ( isSoundCloudEmbed !== null ) ? true : false;
     	
     	if( isSoundCloudEmbed ) {
@@ -128,9 +127,8 @@
     	}     	
     	
     	// check for YouTube embed
-    	var isYouTubeEmbed      = url.match( /youtube\.com\/embed/ig );
-    	var isYouTubeAltEmbed   = url.match( /youtube\-nocookie\.com\/embed/ig );
-    	isYouTubeEmbed          = ( isYouTubeEmbed !== null || isYouTubeAltEmbed !== null ) ? true : false;
+    	var isYouTubeEmbed	= url.match( /youtube\.com\/embed|youtube\-nocookie\.com\/embed/ig );
+    	isYouTubeEmbed		= ( isYouTubeEmbed !== null ) ? true : false;
     	
     	if( isYouTubeEmbed ) {
     		return true;

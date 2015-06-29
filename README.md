@@ -1,7 +1,7 @@
-Linky++
+jQuery AutoLink
 =====
 
-Linky++ is a jQuery plugin for linkifying URLs, mentions (for Twitter, Instagram, GitHub, or a locally hosted site) and hashtags (for Twitter or a locally hosted site). It transforms plain text URLs, mentions and hashtags into clickable URLs.
+jQuery AutoLink is a jQuery plugin for linkifying URLs, mentions (for Twitter, Instagram, GitHub, or a locally hosted site) and hashtags (for Twitter or a locally hosted site). It transforms plain text URLs, mentions and hashtags into clickable URLs.
 
 ## Changes
 

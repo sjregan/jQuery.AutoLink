@@ -1,7 +1,7 @@
 /**
- * jQuery AutoLink v0.2.3
+ * jQuery AutoLink
+ * Auto-link URLs, Mentions, & Hashtags
  * 
- * @link		https://github.com/AnSavvides/jquery.linky
  * @link		https://github.com/MarQuisKnox/jquery.AutoLink
  * @license		MIT <http://en.wikipedia.org/wiki/MIT_License>
  *
@@ -115,12 +115,17 @@
     	}    	
     	    	
     	// check for Vimeo embed
-    	var isVimeoEmbed	= url.match( /player\.vimeo\.com\/video/ig );
-    	isVimeoEmbed		= ( isVimeoEmbed !== null ) ? true : false;
+    	var isVimeoEmbed = url.match( /player\.vimeo\.com\/video/ig );
+    	isVimeoEmbed = ( isVimeoEmbed !== null ) ? true : false;
     	
     	if( isVimeoEmbed ) {
     		return true;
-    	}    	
+    	} 
+    	
+    	var isVevoEmbed = url.match( /cache\.vevo\.com/ig );
+    	if( isVevoEmbed ) {
+    		return true;
+    	}     	
     	
     	// check for YouTube embed
     	var isYouTubeEmbed      = url.match( /youtube\.com\/embed/ig );

@@ -1,8 +1,8 @@
 /**
- * Linky++ v0.2.3
+ * jQuery AutoLink v0.2.3
  * 
  * @link		https://github.com/AnSavvides/jquery.linky
- * @link		https://github.com/MarQuisKnox/jquery.linky
+ * @link		https://github.com/MarQuisKnox/jquery.AutoLink
  * @license		MIT <http://en.wikipedia.org/wiki/MIT_License>
  *
  * @copyright	2013 - 2015 Andreas Savvides et al

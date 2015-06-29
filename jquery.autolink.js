@@ -1,7 +1,7 @@
 /**
- * jQuery AutoLink
- * Auto-link URLs, Mentions, & Hashtags
+ * jQuery AutoLink v0.2.3
  * 
+ * @link		https://github.com/AnSavvides/jquery.linky
  * @link		https://github.com/MarQuisKnox/jquery.AutoLink
  * @license		MIT <http://en.wikipedia.org/wiki/MIT_License>
  *
@@ -25,8 +25,8 @@
     function _linkify( $el, options ) {
         var links = {
                 local: {
-                    baseUrl: BASEURL + "/",
-                    hashtagSearchUrl: "search/",
+                    baseUrl: '//' + window.location.host + '/',
+                    hashtagSearchUrl: 'search/',
                     target: '_self',
                     scheme: '//'
                 },        		
@@ -213,10 +213,14 @@
     // Find any hashtags (e.g. #linkyrocks) and turn them into links that refer
     // to the appropriate social profile.
     function _linkifyHashtags( text, links, element ) {
-        // If there is no search URL for a hashtag, there isn't much we can do
+        if( typeof text === 'undefined' ) {
+        	return;
+        }
+        
+    	// If there is no search URL for a hashtag, there isn't much we can do
         if ( links.hashtagSearchUrl === null ) {
         	return text;
-        }
+        }        
         
         if ( element.find('a[href="' + this + '"]').length === 0 ) {        
         	return text.replace(/(^|\s|\(|>)#((\w|[\u00A1-\uFFFF])+)/g, "$1<a class='linkified' href='" + links.baseUrl + links.hashtagSearchUrl + "$2' target='"+ links.target +"'>#$2</a>");

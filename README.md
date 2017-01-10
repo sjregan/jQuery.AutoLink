@@ -35,17 +35,17 @@ jQuery AutoLink would come in handy if you are pulling data from any of Twitter'
 If you are displaying this information in your UI, you would want to linkify any mentions, hashtags and/or URLs. Linky does exactly that, giving you control over what you want linkified. In this case, let's linkify everything given a `div` containing the aforementioned tweet:
 
 ```html
-<div class="tweet">
+<div class="status">
     @andreassavvides works on his #opensource projects over at https://github.com/AnSavvides        
 </div>
 ```
 
 ```js
-$(".tweet").linkify({
+$(".status").autolink({
     mentions: true,
     hashtags: true,
     urls: true,
-    linkTo: "twitter"
+    linkTo: "local"
 });
 ```
 
@@ -69,7 +69,7 @@ All contributions are welcome; just fork the repository, make your changes and o
 The MIT License (MIT)
 
 Copyright (c) 2013 - 2015 Andreas Savvides
-Copyright (c) 2014 - 2015 MarQuis Knox
+Copyright (c) 2014 - 2016 MarQuis Knox
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

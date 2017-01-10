@@ -14,7 +14,7 @@
 
     $.fn.linky = function(options) {
         return this.each( function() {
-            var $el					= $(this);
+            var $el			= $(this);
             var linkifiedContent	= _linkify( $el, options );
 
             $el.html( linkifiedContent );
@@ -37,7 +37,7 @@
                 },
                 instagram: {
                     baseUrl: "http://instagram.com/",
-                    hashtagSearchUrl: null,
+                    hashtagSearchUrl: "explore/tags/",
                     target: '_blank',
                     scheme: 'http://'
                 },

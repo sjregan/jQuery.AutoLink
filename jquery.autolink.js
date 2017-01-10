@@ -1,8 +1,8 @@
 /**
  * jQuery AutoLink
  * 
- * @link		https://github.com/MarQuisKnox/jquery.AutoLink
- * @license		MIT <http://en.wikipedia.org/wiki/MIT_License>
+ * @link	https://github.com/MarQuisKnox/jquery.AutoLink
+ * @license	MIT <http://en.wikipedia.org/wiki/MIT_License>
  *
  * @copyright	2013 - 2015 Andreas Savvides et al
  * @copyright	2014 - 2015 MarQuis Knox
@@ -12,7 +12,7 @@
 
     'use strict';
 
-    $.fn.linky = function(options) {
+    $.fn.autolink = function(options) {
         return this.each( function() {
             var $el			= $(this);
             var linkifiedContent	= _linkify( $el, options );

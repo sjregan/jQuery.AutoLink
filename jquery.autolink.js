@@ -1,7 +1,7 @@
 /**
  * jQuery AutoLink
  *
- * @link	https://github.com/MarQuisKnox/jQuery.AutoLink
+ * @link	https://github.com/MarQuisKnox/jquery.AutoLink
  * @license	MIT <http://en.wikipedia.org/wiki/MIT_License>
  *
  * @copyright	2013 - 2015 Andreas Savvides et al
@@ -60,7 +60,7 @@
             elContent = $el.html(),
 
             // @link	http://snipplr.com/view/68530/regular-expression-for-matching-urls-with-or-without-https
-            urlRegEx = /(?:(?:http|https):\/\/)?([-a-zA-Z0-9.]{2,256}\.[a-z]{2,4})\b(?:\/[-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)?\??(.*)/gi,
+            urlRegEx = /(?:(?:http|https):\/\/)?([-a-zA-Z0-9.]{2,256}\.[a-z]{2,4})\b(?:\/[-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)?((\?|\/)(.*))?/gi,
             matches;
 
         // Linkifying URLs

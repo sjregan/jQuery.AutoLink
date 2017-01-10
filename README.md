@@ -5,7 +5,7 @@ jQuery AutoLink is a jQuery plugin for linkifying URLs, mentions (for Twitter, I
 
 ## Changes
 
-This fork (<a href="https://github.com/MarQuisKnox/jQuery.AutoLink">@MarQuisKnox</a>) has the following changes:
+This fork (<a href="https://github.com/MarQuisKnox/jQuery.AutoLink">@MarQuisKnox</a>) of [Linky](https://github.com/AnSavvides/jquery.linky) has the following changes:
 <br><br>
 1. Adds the option to link locally<br>
 2. Adds the option to specify the href target<br>

@@ -1,7 +1,7 @@
 /**
  * jQuery AutoLink
  *
- * @link	https://github.com/MarQuisKnox/jquery.AutoLink
+ * @link	https://github.com/MarQuisKnox/jQuery.AutoLink
  * @license	MIT <http://en.wikipedia.org/wiki/MIT_License>
  *
  * @copyright	2013 - 2015 Andreas Savvides et al

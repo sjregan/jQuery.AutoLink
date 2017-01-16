@@ -10,8 +10,8 @@ This fork (<a href="https://github.com/MarQuisKnox/jQuery.AutoLink">@MarQuisKnox
 1. Adds the option to link locally<br>
 2. Adds the option to specify the href target<br>
 3. Fixes YouTube Embeds<br>
-4. Fixes URL RegEx
-5. Matches URLs w/ Parameters
+4. Fixes URL RegEx<br>
+5. Matches URLs w/ Parameters<br>
 6. Matches all TLDs except for those w/ unicode characters
 
 ## Usage

@@ -11,6 +11,8 @@ This fork (<a href="https://github.com/MarQuisKnox/jQuery.AutoLink">@MarQuisKnox
 2. Adds the option to specify the href target<br>
 3. Fixes YouTube Embeds<br>
 4. Fixes URL RegEx
+5. Matches URLs w/ Parameters
+6. Matches all TLDs except for those w/ unicode characters
 
 ## Usage
 

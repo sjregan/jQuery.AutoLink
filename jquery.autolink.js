@@ -5,7 +5,7 @@
  * @license	MIT <http://en.wikipedia.org/wiki/MIT_License>
  *
  * @copyright	2013 - 2015 Andreas Savvides et al
- * @copyright	2014 - 2015 MarQuis Knox
+ * @copyright	2014 - 2017 MarQuis Knox
  */
 
 (function($) {

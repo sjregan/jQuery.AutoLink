@@ -26,7 +26,7 @@ All you have to do is include [`jquery.autolink.js`](jquery.linky.js) or [`jquer
 | mentions      | `false`     | `boolean`    | Identify if mentions should be linkified. |
 | hashtags      | `false`     | `boolean`    | Identify if hashtags should be linkified. |
 | urls          | `true`      | `boolean`    | Identify if URLs should be linkified. |
-| linkTo        | `"twitter"` |  `string`    | Identify location mentions and hashtags should link to|
+| linkTo        | `"twitter"` |  `string`    | Identify location mentions and hashtags should link to.|
 
 ### Example
 

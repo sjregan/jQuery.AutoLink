@@ -71,7 +71,7 @@ All contributions are welcome; just fork the repository, make your changes and o
 The MIT License (MIT)
 
 Copyright (c) 2013 - 2015 Andreas Savvides<br>
-Copyright (c) 2014 - 2016 MarQuis Knox
+Copyright (c) 2014 - 2017 MarQuis Knox
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

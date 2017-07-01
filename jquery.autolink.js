@@ -12,7 +12,10 @@
 
     'use strict';
 
-    var URL_REGEX = /(<a href=")?(?:(^|[ ]|\n|<br(\s+\/)?>))(?:(?:http|https):\/\/)?([-a-zA-Z0-9.]{2,256}\.[a-z]{2,4})\b(?:\/[-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)?((\?|\/)(.*))?/gi;
+    var HASHTAG_REGEX   = /(^|\s|\(|>)#([a-zA-Z0-9-.]+)/g;
+    var URL_REGEX       = /(<a href=")?(?:(^|[ ]|\n|<br(\s+\/)?>))(?:(?:http|https):\/\/)?([-a-zA-Z0-9.]{2,256}\.[a-z]{2,4})\b(?:\/[-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)?((\?|\/)(.*))?/gi;
+    var MENTION_REGEX   = /(?:(^|[ ]|\n|<br(\s+\/)?>))\B@([a-zA-Z0-9-.]+)/ig;
+    var EMAIL_REGEX     = /(?:^|[ ]|\n|<br(\s+\/)>)([a-zA-Z0-9._\-!#$%&'*+-\/=?^_`{|}~"\\]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/ig;
 
     $.fn.autolink = function(options) {
         return this.each( function() {
@@ -53,16 +56,14 @@
             defaultOptions = {
                 mentions: true,
                 hashtags: false,
+                emails: true,
                 urls: true,
                 linkTo: 'local',
                 target: '_self',
                 scheme: '//'
             },
-            extendedOptions = $.extend(defaultOptions, options),
-            elContent = $el.html(),
-
-            // @link	http://snipplr.com/view/68530/regular-expression-for-matching-urls-with-or-without-https
-            urlRegEx = URL_REGEX,
+            extendedOptions = $.extend( defaultOptions, options ),
+            elContent       = $el.html(),
             matches;
 
         // Linkify Hashtags
@@ -72,9 +73,17 @@
 
         // Linkifying URLs
         if ( extendedOptions.urls ) {
-            matches = elContent.match( urlRegEx );
+            matches = elContent.match( URL_REGEX );
+
             if ( matches ) {
                 elContent = _linkifyUrls( matches, $el, extendedOptions );
+            }
+        }
+
+        // Linkify e-mails
+        if ( extendedOptions.emails ) {
+            if( _isEmail( elContent ) ) {
+                elContent = _linkifyEmails( elContent, $el, extendedOptions );
             }
         }
 
@@ -168,10 +177,31 @@
         return elContent;
     }
 
+    function _isEmail( string )
+    {
+        var isEmail = string.match( EMAIL_REGEX );
+
+        if( isEmail ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function _getEmails( string )
+    {
+        var emails = string.match( EMAIL_REGEX );
+
+        if( emails ) {
+            return emails;
+        }
+
+        return null;
+    }
+
     function _isMention( string )
     {
-        var regEx		= /(?:(^|[ ]|\n|<br(\s+\/)?>))\B@([a-zA-Z0-9-.]+)/ig;
-        var isMention	= string.match( regEx );
+        var isMention = string.match( MENTION_REGEX );
 
         if( isMention ) {
             return true;
@@ -182,8 +212,7 @@
 
     function _getMentions( string )
     {
-        var regEx		= /(?:(^|[ ]|\n|<br(\s+\/)?>))\B@([a-zA-Z0-9-.]+)/ig;
-        var mentions	= string.match( regEx );
+        var mentions = string.match( MENTION_REGEX );
 
         if( mentions ) {
             return mentions;
@@ -217,7 +246,33 @@
                     var replacement = '<a class="linkified" href="' + baseUrl + link + '" target="'+ options.target +'">'+ value +'</a>';
 
                     // new content
-                    newContent = newContent.replaceAllByRegex( /(?:(^|[ ]|\n|<br(\s+\/)?>))\B@([a-zA-Z0-9-.]+)/, replacement, element.html() );
+                    newContent = newContent.replaceAllByRegex( MENTION_REGEX, replacement, element.html() );
+                });
+            }
+        }
+
+        return newContent;
+    }
+
+    function _linkifyEmails( text, element, options ) {
+        var newContent = text;
+
+        if( !element.hasClass('parsed') && !element.hasClass('autoLinked') && !element.hasClass('linkified') ) {
+            var emails = _getEmails( text );
+
+            if( emails ) {
+                $.each( emails, function( index, value ) {
+                    // trim
+                    var trimmedText = value.trim();
+
+                    // replace breaks
+                    var link = trimmedText.replace('<br>', '');
+
+                    // replacement text
+                    var replacement = '<a class="linkified" href="mailto:' + link + '" target="'+ options.target +'">'+ value +'</a>';
+
+                    // new content
+                    newContent = newContent.replaceAllByRegex( EMAIL_REGEX, replacement, element.html() );
                 });
             }
         }
@@ -239,7 +294,7 @@
         }
 
         //if ( !element.hasClass('linkified') && element.find('a[href="' + this + '"]').length === 0 ) {
-        return text.replace(/(^|\s|\(|>)#([a-zA-Z0-9-.]+)/g, "$1<a class='linkified' href='" + links.baseUrl + links.hashtagSearchUrl + "$2' target='"+ links.target +"'>#$2</a>");
+        return text.replace( HASHTAG_REGEX, "$1<a class='linkified' href='" + links.baseUrl + links.hashtagSearchUrl + "$2' target='"+ links.target +"'>#$2</a>");
         //}
     }
 

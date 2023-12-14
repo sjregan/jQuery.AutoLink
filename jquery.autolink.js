@@ -1,7 +1,7 @@
 /**
  * jQuery AutoLink
  *
- * @link	https://github.com/MarQuisKnox/jQuery.AutoLink
+ * @link	https://github.com/sjregan/jQuery.AutoLink
  * @license	MIT <http://en.wikipedia.org/wiki/MIT_License>
  *
  * @copyright	2013 - 2015 Andreas Savvides et al
@@ -169,7 +169,11 @@
             text = text.replace( '<br>', '' );
 
             if ( !isEmbed && value.length > 0 ) {
-                elContent = elContent.split( new RegExp( value ) ).join( '<a class="linkified" href="' + scheme + text + '" target="'+ linkObj.target +'">'+ value +'</a>' );
+                var replacement = '<a class="linkified" href="' + scheme + text + '" target="'+ linkObj.target +'">'+ value +'</a>';
+
+                elContent = elContent
+                    .split( value )
+                    .join( replacement );
             }
 
         });

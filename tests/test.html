@@ -9,6 +9,9 @@
         <div class="url-without-link">
             https://github.com/AnSavvides should turn into a link
         </div>
+        <div class="url-query-params-without-link">
+            https://github.com/AnSavvides?test=param should turn into a link
+        </div>
         <div class="url-with-link">
             <a href="https://twitter.com/andreassavvides">This link should stay untouched</a>. While https://github.com/AnSavvides should turn into a link.
         </div>
@@ -36,6 +39,15 @@
                     $(".url-without-link").html().trim(),
                     expectedResponse,
                     "HTML should contain a linkified URL."
+                );
+
+                expectedResponse = "<a href=\"https://github.com/AnSavvides?test=param\" target=\"_blank\">https://github.com/AnSavvides?test=param</a> should turn into a link";
+
+                $(".url-query-params-without-link").autolink();
+                assert.equal(
+                    $(".url-query-params-without-link").html().trim(),
+                    expectedResponse,
+                    "HTML should contain a linkified URL that contains a query parameter."
                 );
 
                 expectedResponse = "<a href=\"https://twitter.com/andreassavvides\">This link should stay untouched</a>. While <a href=\"https://github.com/AnSavvides\" target=\"_blank\">https://github.com/AnSavvides</a> should turn into a link.";
